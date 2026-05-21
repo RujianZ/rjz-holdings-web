@@ -12,6 +12,7 @@ import {
   motion,
   useMotionValue,
   useTransform,
+  useInView,
   animate,
   type PanInfo,
 } from "framer-motion";
@@ -36,6 +37,7 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
   const containerWidthMV = useMotionValue(0);
   const [bounds, setBounds] = useState({ left: 0, right: 0 });
   const [active, setActive] = useState(0);
+  const inView = useInView(containerRef, { once: true, amount: 0.15 });
 
   const total = ventures.length;
   const padded = useMemo(() => ventures, [ventures]);
@@ -149,6 +151,8 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
               x={x}
               index={i}
               containerWidthMV={containerWidthMV}
+              inView={inView}
+              entranceDelay={i * 0.09}
             >
               <VentureCard venture={venture} width={CARD_WIDTH} />
             </ScrollerItem>
@@ -190,10 +194,19 @@ interface ScrollerItemProps {
   x: ReturnType<typeof useMotionValue<number>>;
   index: number;
   containerWidthMV: ReturnType<typeof useMotionValue<number>>;
+  inView: boolean;
+  entranceDelay: number;
   children: React.ReactNode;
 }
 
-function ScrollerItem({ x, index, containerWidthMV, children }: ScrollerItemProps) {
+function ScrollerItem({
+  x,
+  index,
+  containerWidthMV,
+  inView,
+  entranceDelay,
+  children,
+}: ScrollerItemProps) {
   const center = index * STEP + CARD_WIDTH / 2;
 
   const scale = useTransform<number, number>(
@@ -207,7 +220,7 @@ function ScrollerItem({ x, index, containerWidthMV, children }: ScrollerItemProp
     }
   );
 
-  const opacity = useTransform<number, number>(
+  const innerOpacity = useTransform<number, number>(
     [x, containerWidthMV],
     ([latest, cw]) => {
       if (cw === 0) return 1;
@@ -219,8 +232,19 @@ function ScrollerItem({ x, index, containerWidthMV, children }: ScrollerItemProp
   );
 
   return (
-    <motion.div style={{ scale, opacity }} className="shrink-0">
-      {children}
+    <motion.div
+      className="shrink-0"
+      initial={{ opacity: 0, x: 32 }}
+      animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 32 }}
+      transition={{
+        duration: 0.6,
+        delay: entranceDelay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      <motion.div style={{ scale, opacity: innerOpacity }}>
+        {children}
+      </motion.div>
     </motion.div>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandMark } from "@/components/brand-mark";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -8,10 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-16 grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5 flex flex-col gap-4">
           <div className="inline-flex items-center gap-3">
-            <span className="relative inline-block h-3 w-3">
-              <span className="absolute inset-0 bg-foreground" />
-              <span className="absolute -right-1 -top-1 h-1.5 w-1.5 rounded-full bg-accent" />
-            </span>
+            <BrandMark />
             <span className="mono-label text-foreground">
               RJZ <span className="text-muted-foreground">/ HOLDINGS</span>
             </span>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { BrandMark } from "@/components/brand-mark";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -23,10 +24,7 @@ export function Nav() {
           className="group inline-flex items-center gap-3"
           aria-label="RJZ Holdings — Home"
         >
-          <span className="relative inline-block h-3 w-3">
-            <span className="absolute inset-0 bg-foreground" />
-            <span className="absolute -right-1 -top-1 h-1.5 w-1.5 rounded-full bg-accent" />
-          </span>
+          <BrandMark />
           <span className="mono-label text-foreground">
             RJZ <span className="text-muted-foreground">/ HOLDINGS</span>
           </span>

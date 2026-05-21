@@ -2,6 +2,9 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { VenturesScroller } from "@/components/ventures-scroller";
 import { SectionHeader } from "@/components/section-header";
+import { ScanLine } from "@/components/scan-line";
+import { Typewriter } from "@/components/typewriter";
+import { Stagger, StaggerItem, Reveal } from "@/components/reveal";
 import { getAllVentureMetas } from "@/lib/ventures";
 import { getAllJournalMetas } from "@/lib/journal";
 
@@ -21,68 +24,90 @@ export default function HomePage() {
 
 function Hero() {
   return (
-    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10">
-      <div className="grid gap-16 md:grid-cols-12 md:gap-10 min-h-[60vh]">
-        <div className="md:col-span-8 flex flex-col gap-10 justify-between">
-          <span className="mono-label text-muted-foreground">
-            EST. 2026 · DELAWARE
-          </span>
+    <section className="relative mx-auto w-full max-w-[1200px] px-6 md:px-10">
+      <ScanLine delay={0.15} duration={1.3} />
+      <div className="relative grid gap-16 md:grid-cols-12 md:gap-10 min-h-[60vh]">
+        <Stagger
+          mode="load"
+          staggerDelay={0.09}
+          initialDelay={0.2}
+          className="md:col-span-8 flex flex-col gap-10 justify-between"
+        >
+          <StaggerItem>
+            <span className="mono-label text-muted-foreground">
+              EST. 2026 · DELAWARE
+            </span>
+          </StaggerItem>
 
           <div className="flex flex-col gap-6 max-w-3xl">
-            <h1 className="text-balance text-[2.25rem] md:text-5xl leading-[1.1] tracking-tight">
-              A holding company
-              <br />
-              <span className="text-muted-foreground">
-                for software, capital, and ideas.
-              </span>
-            </h1>
-            <p className="max-w-md text-base text-muted-foreground leading-relaxed">
-              RJZ Holdings holds equity in operating ventures, allocates capital
-              across projects, and provides an institutional umbrella for the
-              work that runs under it.
-            </p>
+            <StaggerItem>
+              <h1 className="text-balance text-[2.25rem] md:text-5xl leading-[1.1] tracking-tight">
+                A holding company
+                <br />
+                <span className="text-muted-foreground">
+                  for software, capital, and ideas.
+                </span>
+              </h1>
+            </StaggerItem>
+            <StaggerItem>
+              <p className="max-w-md text-base text-muted-foreground leading-relaxed">
+                RJZ Holdings holds equity in operating ventures, allocates
+                capital across projects, and provides an institutional umbrella
+                for the work that runs under it.
+              </p>
+            </StaggerItem>
           </div>
 
-          <div className="flex items-center gap-6">
-            <Link
-              href="/ventures"
-              className="group inline-flex items-center gap-2 border border-foreground/80 px-5 h-11 text-sm hover:bg-foreground hover:text-background transition-colors"
-            >
-              View ventures
-              <ArrowUpRight
-                size={14}
-                strokeWidth={1.5}
-                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </Link>
-            <Link
-              href="/about"
-              className="mono-label text-muted-foreground hover:text-foreground transition-colors"
-            >
-              About RJZ →
-            </Link>
-          </div>
-        </div>
+          <StaggerItem>
+            <div className="flex items-center gap-6">
+              <Link
+                href="/ventures"
+                className="group inline-flex items-center gap-2 border border-foreground/80 px-5 h-11 text-sm hover:bg-foreground hover:text-background transition-colors"
+              >
+                View ventures
+                <ArrowUpRight
+                  size={14}
+                  strokeWidth={1.5}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+              <Link
+                href="/about"
+                className="mono-label text-muted-foreground hover:text-foreground transition-colors"
+              >
+                About RJZ →
+              </Link>
+            </div>
+          </StaggerItem>
+        </Stagger>
 
         <aside className="md:col-span-4 relative flex flex-col justify-between gap-10 md:items-end md:pl-8">
           <span
             aria-hidden
             className="hairline-v hidden md:block absolute left-0 top-0 bottom-0"
           />
-          <div className="flex flex-col gap-2 md:items-end">
-            <span className="mono-label silver-text">Index</span>
-            <span className="font-mono text-sm">000 / 001</span>
-          </div>
+          <Reveal mode="load" delay={0.6} y={6}>
+            <div className="flex flex-col gap-2 md:items-end">
+              <span className="mono-label silver-text">Index</span>
+              <span className="font-mono text-sm">000 / 001</span>
+            </div>
+          </Reveal>
 
-          <div className="flex flex-col gap-2 md:items-end mt-auto">
-            <span className="mono-label silver-text">Coordinates</span>
-            <span className="font-mono text-xs md:text-sm text-foreground/80">
-              N 42.1875° · W 71.3070°
-            </span>
-            <span className="mono-label text-muted-foreground">
-              Medfield, MA
-            </span>
-          </div>
+          <Reveal mode="load" delay={0.85} y={6}>
+            <div className="flex flex-col gap-2 md:items-end mt-auto">
+              <span className="mono-label silver-text">Coordinates</span>
+              <span className="font-mono text-xs md:text-sm text-foreground/80">
+                <Typewriter
+                  text="N 42.1875° · W 71.3070°"
+                  delay={950}
+                  speed={32}
+                />
+              </span>
+              <span className="mono-label text-muted-foreground">
+                Medfield, MA
+              </span>
+            </div>
+          </Reveal>
         </aside>
       </div>
     </section>
@@ -114,9 +139,13 @@ function JournalPreview({
       {entries.length === 0 ? (
         <p className="text-muted-foreground text-sm">No entries yet.</p>
       ) : (
-        <ul className="divide-y divide-border">
+        <Stagger
+          mode="view"
+          staggerDelay={0.08}
+          className="divide-y divide-border"
+        >
           {entries.map((entry) => (
-            <li key={entry.slug}>
+            <StaggerItem key={entry.slug}>
               <Link
                 href={`/journal/${entry.slug}`}
                 className="group grid grid-cols-12 gap-4 py-6 items-baseline"
@@ -131,9 +160,9 @@ function JournalPreview({
                   Read →
                 </p>
               </Link>
-            </li>
+            </StaggerItem>
           ))}
-        </ul>
+        </Stagger>
       )}
     </section>
   );
@@ -142,6 +171,7 @@ function JournalPreview({
 function FooterCTA() {
   return (
     <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10">
+      <Reveal mode="view" y={20}>
       <div className="border border-border p-10 md:p-16 flex flex-col gap-8">
         <span className="mono-label text-muted-foreground">03 / Contact</span>
         <h2 className="text-balance text-3xl md:text-4xl leading-tight max-w-2xl">
@@ -165,6 +195,7 @@ function FooterCTA() {
           </Link>
         </div>
       </div>
+      </Reveal>
     </section>
   );
 }

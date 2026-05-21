@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { MotionRoot } from "@/components/motion-config";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import "./globals.css";
@@ -38,9 +39,11 @@ export default function RootLayout({
     >
       <body className="min-h-screen flex flex-col">
         <ThemeProvider>
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <MotionRoot>
+            <Nav />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </MotionRoot>
         </ThemeProvider>
       </body>
     </html>
