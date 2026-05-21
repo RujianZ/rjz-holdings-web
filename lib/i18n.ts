@@ -8,7 +8,6 @@ export interface Dict {
   nav: {
     ventures: string;
     about: string;
-    journal: string;
     contact: string;
     switchTo: string;
   };
@@ -29,17 +28,6 @@ export interface Dict {
       label: string;
       title: string;
       description: string;
-      allInView: string;
-      dragToScroll: string;
-    };
-    journal: {
-      index: string;
-      label: string;
-      title: string;
-      description: string;
-      allEntries: string;
-      read: string;
-      noEntries: string;
     };
     cta: {
       index: string;
@@ -102,6 +90,7 @@ export interface Dict {
     };
   };
 
+  /** Journal routes are still live for any deep-link, but no longer surfaced in nav/home/footer. */
   journal: {
     metaTitle: string;
     metaDescription: string;
@@ -155,17 +144,15 @@ export const enDict: Dict = {
   nav: {
     ventures: "Ventures",
     about: "About",
-    journal: "Journal",
     contact: "Contact",
     switchTo: "中文",
   },
 
   home: {
     eyebrow: "EST. 2026 · DELAWARE",
-    titleA: "A holding company",
-    titleB: "for software, capital, and ideas.",
-    description:
-      "RJZ Holdings holds equity in operating ventures, allocates capital across projects, and provides an institutional umbrella for the work that runs under it.",
+    titleA: "Operates software. Holds equity. Allocates capital.",
+    titleB: "",
+    description: "Three projects. One umbrella.",
     viewVentures: "View ventures",
     aboutLink: "About RJZ →",
     indexLabel: "Index",
@@ -176,22 +163,10 @@ export const enDict: Dict = {
       index: "01",
       label: "Ventures",
       title: "Operating companies under the RJZ umbrella.",
-      description: "Each venture is structured independently. Drag to explore.",
-      allInView: "All in view",
-      dragToScroll: "Drag to scroll",
-    },
-    journal: {
-      index: "02",
-      label: "Journal",
-      title: "Notes from inside the holding company.",
-      description:
-        "Short writing on what we're building and why. Updated occasionally, not on a schedule.",
-      allEntries: "All entries →",
-      read: "Read →",
-      noEntries: "No entries yet.",
+      description: "Some independently incorporated. Some operated directly.",
     },
     cta: {
-      index: "03",
+      index: "02",
       label: "Contact",
       title: "Working on something the umbrella might fit?",
       description:
@@ -203,14 +178,14 @@ export const enDict: Dict = {
   about: {
     metaTitle: "About",
     metaDescription:
-      "RJZ Holdings LLC is a Delaware-registered holding company established in 2026.",
+      "RJZ Holdings LLC is a Delaware-registered single-member LLC established in 2026.",
     section: "00 / About",
     titleA: "RJZ Holdings is the structure",
     titleB: "behind the work.",
     mandateLabel: "Mandate",
     mandateBody: [
-      "RJZ Holdings LLC is a Delaware-registered holding company established in 2026. It exists to hold equity in operating ventures, manage capital allocation across projects, and provide an institutional umbrella for software development, consulting engagements, media output, and investments.",
-      "The holding company itself does not deliver products or services to end users. Its operating ventures do. Each venture is structured independently and listed in the Ventures section.",
+      "RJZ Holdings LLC is a Delaware-registered single-member LLC established in 2026. It operates software projects directly and holds equity in externally co-owned ventures.",
+      "Some projects under RJZ are independently incorporated; others are operated directly. The Ventures section lists current status for each.",
     ],
     founderLabel: "Founder",
     founderName: "Rujian Zhang",
@@ -234,8 +209,8 @@ export const enDict: Dict = {
     },
     structureLabel: "Structure",
     structureBody: [
-      "Each venture under the umbrella has its own legal entity, cap table, and operating plan. The holding company provides shared services — capital, infrastructure, and brand — without diluting the autonomy of individual ventures.",
-      "This page is a record, not marketing. If anything here is unclear, ask.",
+      "Some ventures are independently incorporated and externally co-owned; others are operated directly under RJZ. Each has its own roadmap.",
+      "RJZ provides shared capital, infrastructure, and brand across all projects.",
     ],
   },
 
@@ -283,7 +258,7 @@ export const enDict: Dict = {
   contact: {
     metaTitle: "Contact",
     metaDescription: "Get in touch with RJZ Holdings.",
-    section: "03 / Contact",
+    section: "02 / Contact",
     titleA: "A real person reads this.",
     titleB: "No forms, no funnels.",
     description:
@@ -327,7 +302,6 @@ export const zhDict: Dict = {
   nav: {
     ventures: "公司组合",
     about: "关于",
-    journal: "日志",
     contact: "联系",
     switchTo: "EN",
   },
@@ -348,21 +322,10 @@ export const zhDict: Dict = {
       index: "01",
       label: "公司组合",
       title: "RJZ 伞下的运营公司。",
-      description: "每家公司各自独立。拖动浏览。",
-      allInView: "已全部可见",
-      dragToScroll: "拖动浏览",
-    },
-    journal: {
-      index: "02",
-      label: "日志",
-      title: "来自控股公司内部的记录。",
-      description: "关于我们在做什么、为什么这么做的短文。不定期更新，不按节奏。",
-      allEntries: "所有日志 →",
-      read: "阅读 →",
-      noEntries: "暂无日志。",
+      description: "部分独立注册，部分直接运营。",
     },
     cta: {
-      index: "03",
+      index: "02",
       label: "联系",
       title: "在做的事可能适合 RJZ 伞下？",
       description: "欢迎投资、咨询或运营合作的洽谈。回复来自真人。",
@@ -451,7 +414,7 @@ export const zhDict: Dict = {
   contact: {
     metaTitle: "联系",
     metaDescription: "联系 RJZ Holdings。",
-    section: "03 / 联系",
+    section: "02 / 联系",
     titleA: "回复你的是真人。",
     titleB: "没有表单，也没有营销漏斗。",
     description: "邮件是最快的方式。在主题里说明涉及哪家公司或什么主题，便于路由。",

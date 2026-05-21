@@ -49,14 +49,6 @@ export function Footer() {
             </li>
             <li>
               <Link
-                href={`${dict.prefix}/journal`}
-                className="hover:text-accent transition-colors"
-              >
-                {dict.nav.journal}
-              </Link>
-            </li>
-            <li>
-              <Link
                 href={`${dict.prefix}/contact`}
                 className="hover:text-accent transition-colors"
               >

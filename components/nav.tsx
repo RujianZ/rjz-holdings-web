@@ -15,7 +15,6 @@ export function Nav() {
   const links = [
     { href: `${dict.prefix}/ventures`, label: dict.nav.ventures },
     { href: `${dict.prefix}/about`, label: dict.nav.about },
-    { href: `${dict.prefix}/journal`, label: dict.nav.journal },
     { href: `${dict.prefix}/contact`, label: dict.nav.contact },
   ];
 
