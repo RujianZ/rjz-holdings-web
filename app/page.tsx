@@ -1,65 +1,178 @@
-import Image from "next/image";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { VenturesScroller } from "@/components/ventures-scroller";
+import { SectionHeader } from "@/components/section-header";
+import { getAllVentureMetas } from "@/lib/ventures";
+import { getAllJournalMetas } from "@/lib/journal";
 
-export default function Home() {
+export default function HomePage() {
+  const ventures = getAllVentureMetas();
+  const journal = getAllJournalMetas().slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="flex flex-col gap-24 md:gap-32 pt-12 md:pt-24">
+      <Hero />
+      <VenturesScroller ventures={ventures} />
+      <JournalPreview entries={journal} />
+      <FooterCTA />
     </div>
   );
+}
+
+function Hero() {
+  return (
+    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10">
+      <div className="grid gap-16 md:grid-cols-12 md:gap-10 min-h-[60vh]">
+        <div className="md:col-span-8 flex flex-col gap-10 justify-between">
+          <span className="mono-label text-muted-foreground">
+            EST. 2026 · DELAWARE
+          </span>
+
+          <div className="flex flex-col gap-6 max-w-3xl">
+            <h1 className="text-balance text-[2.25rem] md:text-5xl leading-[1.1] tracking-tight">
+              A holding company
+              <br />
+              <span className="text-muted-foreground">
+                for software, capital, and ideas.
+              </span>
+            </h1>
+            <p className="max-w-md text-base text-muted-foreground leading-relaxed">
+              RJZ Holdings holds equity in operating ventures, allocates capital
+              across projects, and provides an institutional umbrella for the
+              work that runs under it.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <Link
+              href="/ventures"
+              className="group inline-flex items-center gap-2 border border-foreground/80 px-5 h-11 text-sm hover:bg-foreground hover:text-background transition-colors"
+            >
+              View ventures
+              <ArrowUpRight
+                size={14}
+                strokeWidth={1.5}
+                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+            <Link
+              href="/about"
+              className="mono-label text-muted-foreground hover:text-foreground transition-colors"
+            >
+              About RJZ →
+            </Link>
+          </div>
+        </div>
+
+        <aside className="md:col-span-4 flex flex-col justify-between gap-10 md:items-end">
+          <div className="flex flex-col gap-2 md:items-end">
+            <span className="mono-label text-muted-foreground">Index</span>
+            <span className="text-sm">000 / 001</span>
+          </div>
+
+          <div className="flex flex-col gap-2 md:items-end mt-auto">
+            <span className="mono-label text-muted-foreground">Coordinates</span>
+            <span className="font-mono text-xs md:text-sm text-foreground/80">
+              N 42.1875° · W 71.3070°
+            </span>
+            <span className="mono-label text-muted-foreground">
+              Medfield, MA
+            </span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+function JournalPreview({
+  entries,
+}: {
+  entries: ReturnType<typeof getAllJournalMetas>;
+}) {
+  return (
+    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10 flex flex-col gap-10">
+      <SectionHeader
+        index="02"
+        label="Journal"
+        title="Notes from inside the holding company."
+        description="Short writing on what we're building and why. Updated occasionally, not on a schedule."
+        action={
+          <Link
+            href="/journal"
+            className="mono-label text-muted-foreground hover:text-foreground transition-colors"
+          >
+            All entries →
+          </Link>
+        }
+      />
+
+      {entries.length === 0 ? (
+        <p className="text-muted-foreground text-sm">No entries yet.</p>
+      ) : (
+        <ul className="divide-y divide-border">
+          {entries.map((entry) => (
+            <li key={entry.slug}>
+              <Link
+                href={`/journal/${entry.slug}`}
+                className="group grid grid-cols-12 gap-4 py-6 items-baseline"
+              >
+                <span className="mono-label text-muted-foreground col-span-3 md:col-span-2">
+                  {formatDate(entry.date)}
+                </span>
+                <h3 className="text-lg col-span-9 md:col-span-7 group-hover:text-accent transition-colors">
+                  {entry.title}
+                </h3>
+                <p className="hidden md:block text-sm text-muted-foreground col-span-3 text-right">
+                  Read →
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  );
+}
+
+function FooterCTA() {
+  return (
+    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10">
+      <div className="border border-border p-10 md:p-16 flex flex-col gap-8">
+        <span className="mono-label text-muted-foreground">03 / Contact</span>
+        <h2 className="text-balance text-3xl md:text-4xl leading-tight max-w-2xl">
+          Working on something the umbrella might fit?
+        </h2>
+        <p className="text-muted-foreground max-w-xl leading-relaxed">
+          Investment, consulting, or operating partnership inquiries are welcome.
+          Responses are written by a human.
+        </p>
+        <div>
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-2 border border-foreground/80 px-5 h-11 text-sm hover:bg-foreground hover:text-background transition-colors"
+          >
+            Get in touch
+            <ArrowUpRight
+              size={14}
+              strokeWidth={1.5}
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function formatDate(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d
+    .toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    })
+    .toUpperCase();
 }
