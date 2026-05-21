@@ -34,51 +34,65 @@
 
 /* Dark is default. Light mode is opt-in. */
 :root {
-  /* Charcoal + off-white palette */
-  --background: #0a0a0a;
+  /* Charcoal + off-white + cool-silver palette */
+  --background: #0f1115;
   --foreground: #f5f5f0;
-  --muted: #1a1a1a;
-  --muted-foreground: #a3a3a3;
-  --subtle: #737373;
-  --border: rgba(245, 245, 240, 0.1);
+  --muted: #1a1d22;
+  --muted-foreground: #a8aeb8;
+  --subtle: #7a828e;
+  --border: rgba(200, 215, 230, 0.12);
+  --hairline-gradient: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 215, 230, 0.22) 50%,
+    transparent 100%
+  );
+  --silver: #c8ced8;
   --accent: #d4a574;
 
   /* shadcn aliases mapped onto the RJZ palette */
-  --card: #0a0a0a;
+  --card: #0f1115;
   --card-foreground: #f5f5f0;
-  --popover: #141414;
+  --popover: #16181d;
   --popover-foreground: #f5f5f0;
   --primary: #f5f5f0;
-  --primary-foreground: #0a0a0a;
-  --secondary: #1a1a1a;
+  --primary-foreground: #0f1115;
+  --secondary: #1a1d22;
   --secondary-foreground: #f5f5f0;
-  --accent-foreground: #0a0a0a;
+  --accent-foreground: #0f1115;
   --destructive: oklch(0.704 0.191 22.216);
-  --input: rgba(245, 245, 240, 0.1);
-  --ring: rgba(245, 245, 240, 0.2);
+  --input: rgba(200, 215, 230, 0.12);
+  --ring: rgba(200, 215, 230, 0.25);
 }
 
 .light {
   --background: #fafaf7;
-  --foreground: #0a0a0a;
+  --foreground: #0f1115;
   --muted: #f0f0eb;
-  --muted-foreground: #525252;
-  --subtle: #737373;
-  --border: rgba(10, 10, 10, 0.1);
-  --accent: #d4a574;
+  --muted-foreground: #4a525e;
+  --subtle: #6e7682;
+  --border: rgba(40, 55, 75, 0.14);
+  --hairline-gradient: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(40, 55, 75, 0.2) 50%,
+    transparent 100%
+  );
+  --silver: #6e7682;
+  --accent: #b8884a;
 
   --card: #fafaf7;
-  --card-foreground: #0a0a0a;
+  --card-foreground: #0f1115;
   --popover: #ffffff;
-  --popover-foreground: #0a0a0a;
-  --primary: #0a0a0a;
+  --popover-foreground: #0f1115;
+  --primary: #0f1115;
   --primary-foreground: #fafaf7;
   --secondary: #f0f0eb;
-  --secondary-foreground: #0a0a0a;
-  --accent-foreground: #0a0a0a;
+  --secondary-foreground: #0f1115;
+  --accent-foreground: #fafaf7;
   --destructive: oklch(0.577 0.245 27.325);
-  --input: rgba(10, 10, 10, 0.1);
-  --ring: rgba(10, 10, 10, 0.2);
+  --input: rgba(40, 55, 75, 0.14);
+  --ring: rgba(40, 55, 75, 0.25);
 }
 
 @layer base {
@@ -125,9 +139,59 @@
   }
 
   .hairline {
-    height: 0.5px;
-    background: var(--border);
+    height: 1px;
+    background: var(--hairline-gradient);
     border: 0;
+  }
+
+  .hairline-v {
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(200, 215, 230, 0.22) 50%,
+      transparent 100%
+    );
+  }
+
+  .light .hairline-v {
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(40, 55, 75, 0.2) 50%,
+      transparent 100%
+    );
+  }
+
+  .placeholder-frame {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--muted);
+    background-image:
+      linear-gradient(135deg, rgba(200, 215, 230, 0.05) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg,
+        transparent 0,
+        transparent 14px,
+        rgba(200, 215, 230, 0.045) 14px,
+        rgba(200, 215, 230, 0.045) 15px
+      );
+  }
+
+  .light .placeholder-frame {
+    background-image:
+      linear-gradient(135deg, rgba(40, 55, 75, 0.06) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg,
+        transparent 0,
+        transparent 14px,
+        rgba(40, 55, 75, 0.06) 14px,
+        rgba(40, 55, 75, 0.06) 15px
+      );
+  }
+
+  .silver-text {
+    color: var(--silver);
   }
 
   .no-scrollbar::-webkit-scrollbar {

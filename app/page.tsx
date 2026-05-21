@@ -64,14 +64,18 @@ function Hero() {
           </div>
         </div>
 
-        <aside className="md:col-span-4 flex flex-col justify-between gap-10 md:items-end">
+        <aside className="md:col-span-4 relative flex flex-col justify-between gap-10 md:items-end md:pl-8">
+          <span
+            aria-hidden
+            className="hairline-v hidden md:block absolute left-0 top-0 bottom-0"
+          />
           <div className="flex flex-col gap-2 md:items-end">
-            <span className="mono-label text-muted-foreground">Index</span>
-            <span className="text-sm">000 / 001</span>
+            <span className="mono-label silver-text">Index</span>
+            <span className="font-mono text-sm">000 / 001</span>
           </div>
 
           <div className="flex flex-col gap-2 md:items-end mt-auto">
-            <span className="mono-label text-muted-foreground">Coordinates</span>
+            <span className="mono-label silver-text">Coordinates</span>
             <span className="font-mono text-xs md:text-sm text-foreground/80">
               N 42.1875° · W 71.3070°
             </span>

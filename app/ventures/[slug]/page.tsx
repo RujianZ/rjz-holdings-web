@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
+import { PlaceholderFrame } from "@/components/placeholder-frame";
 import { getVentureBySlug, getVentureSlugs } from "@/lib/ventures";
 
 interface PageProps {
@@ -63,6 +64,12 @@ export default async function VenturePage({ params }: PageProps) {
           </p>
         </div>
       </header>
+
+      <PlaceholderFrame
+        label={`${venture.name} / cover`}
+        caption="hero image — supply 1600×1000+"
+        aspect="video"
+      />
 
       <hr className="hairline" />
 

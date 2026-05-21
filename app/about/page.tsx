@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SectionHeader } from "@/components/section-header";
+import { PlaceholderFrame } from "@/components/placeholder-frame";
 
 export const metadata: Metadata = {
   title: "About",
@@ -42,6 +42,34 @@ export default function AboutPage() {
             end users. Its operating ventures do. Each venture is structured
             independently and listed in the Ventures section.
           </p>
+        </div>
+      </section>
+
+      <hr className="hairline" />
+
+      <section className="grid gap-10 md:grid-cols-12">
+        <div className="md:col-span-3">
+          <span className="mono-label text-muted-foreground">Founder</span>
+        </div>
+        <div className="md:col-span-9 grid gap-10 md:grid-cols-12 items-start">
+          <div className="md:col-span-5">
+            <PlaceholderFrame
+              label="Founder / portrait"
+              caption="800×1000 portrait"
+              aspect="portrait"
+            />
+          </div>
+          <div className="md:col-span-7 flex flex-col gap-4 text-base leading-relaxed">
+            <p className="text-lg">[ Your name placeholder ]</p>
+            <p className="text-muted-foreground">
+              Founder & sole member of RJZ Holdings LLC. Operator, developer,
+              capital allocator across the umbrella&apos;s ventures.
+            </p>
+            <p className="text-sm text-muted-foreground">
+              Bio copy to be filled. This section will hold a 2–3 paragraph
+              founder note once you&apos;re ready.
+            </p>
+          </div>
         </div>
       </section>
 
