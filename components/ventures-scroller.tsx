@@ -33,6 +33,7 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
+  const containerWidthMV = useMotionValue(0);
   const [bounds, setBounds] = useState({ left: 0, right: 0 });
   const [active, setActive] = useState(0);
 
@@ -45,9 +46,10 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
     if (!container || !track) return;
     const containerWidth = container.offsetWidth;
     const trackWidth = track.scrollWidth;
+    containerWidthMV.set(containerWidth);
     const left = Math.min(0, containerWidth - trackWidth);
     setBounds({ left, right: 0 });
-  }, []);
+  }, [containerWidthMV]);
 
   useLayoutEffect(() => {
     recompute();
@@ -146,7 +148,7 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
               key={venture.slug}
               x={x}
               index={i}
-              containerRef={containerRef}
+              containerWidthMV={containerWidthMV}
             >
               <VentureCard venture={venture} width={CARD_WIDTH} />
             </ScrollerItem>
@@ -187,28 +189,34 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
 interface ScrollerItemProps {
   x: ReturnType<typeof useMotionValue<number>>;
   index: number;
-  containerRef: React.RefObject<HTMLDivElement | null>;
+  containerWidthMV: ReturnType<typeof useMotionValue<number>>;
   children: React.ReactNode;
 }
 
-function ScrollerItem({ x, index, containerRef, children }: ScrollerItemProps) {
+function ScrollerItem({ x, index, containerWidthMV, children }: ScrollerItemProps) {
   const center = index * STEP + CARD_WIDTH / 2;
-  const containerWidth =
-    containerRef.current?.offsetWidth ?? (typeof window !== "undefined" ? window.innerWidth : 1200);
 
-  const scale = useTransform(x, (latest) => {
-    const viewportCenter = -latest + containerWidth / 2;
-    const distance = Math.abs(viewportCenter - center);
-    const normalized = Math.min(1, distance / (STEP * 1.2));
-    return 1.02 - normalized * 0.04;
-  });
+  const scale = useTransform<number, number>(
+    [x, containerWidthMV],
+    ([latest, cw]) => {
+      if (cw === 0) return 1;
+      const viewportCenter = -latest + cw / 2;
+      const distance = Math.abs(viewportCenter - center);
+      const normalized = Math.min(1, distance / (STEP * 1.2));
+      return 1.02 - normalized * 0.04;
+    }
+  );
 
-  const opacity = useTransform(x, (latest) => {
-    const viewportCenter = -latest + containerWidth / 2;
-    const distance = Math.abs(viewportCenter - center);
-    const normalized = Math.min(1, distance / (STEP * 1.5));
-    return 1 - normalized * 0.4;
-  });
+  const opacity = useTransform<number, number>(
+    [x, containerWidthMV],
+    ([latest, cw]) => {
+      if (cw === 0) return 1;
+      const viewportCenter = -latest + cw / 2;
+      const distance = Math.abs(viewportCenter - center);
+      const normalized = Math.min(1, distance / (STEP * 1.5));
+      return 1 - normalized * 0.4;
+    }
+  );
 
   return (
     <motion.div style={{ scale, opacity }} className="shrink-0">
