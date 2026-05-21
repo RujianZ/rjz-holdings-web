@@ -1,8 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import type { Lang } from "@/lib/i18n";
 
-const JOURNAL_DIR = path.join(process.cwd(), "content", "journal");
+function journalDir(lang: Lang): string {
+  return path.join(
+    process.cwd(),
+    "content",
+    lang === "zh" ? "zh/journal" : "journal"
+  );
+}
 
 export interface JournalMeta {
   slug: string;
@@ -15,9 +22,9 @@ export interface JournalEntry extends JournalMeta {
   body: string;
 }
 
-function readJournalFile(filename: string): JournalEntry {
+function readJournalFile(filename: string, dir: string): JournalEntry {
   const slug = filename.replace(/\.mdx?$/, "");
-  const raw = fs.readFileSync(path.join(JOURNAL_DIR, filename), "utf8");
+  const raw = fs.readFileSync(path.join(dir, filename), "utf8");
   const { data, content } = matter(raw);
   return {
     slug: (data.slug as string) ?? slug,
@@ -28,23 +35,24 @@ function readJournalFile(filename: string): JournalEntry {
   };
 }
 
-export function getAllJournal(): JournalEntry[] {
-  if (!fs.existsSync(JOURNAL_DIR)) return [];
-  const files = fs.readdirSync(JOURNAL_DIR).filter((f) => /\.mdx?$/.test(f));
+export function getAllJournal(lang: Lang = "en"): JournalEntry[] {
+  const dir = journalDir(lang);
+  if (!fs.existsSync(dir)) return [];
+  const files = fs.readdirSync(dir).filter((f) => /\.mdx?$/.test(f));
   return files
-    .map(readJournalFile)
+    .map((f) => readJournalFile(f, dir))
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getAllJournalMetas(): JournalMeta[] {
-  return getAllJournal().map(({ body: _body, ...meta }) => meta);
+export function getAllJournalMetas(lang: Lang = "en"): JournalMeta[] {
+  return getAllJournal(lang).map(({ body: _body, ...meta }) => meta);
 }
 
-export function getJournalBySlug(slug: string): JournalEntry | null {
-  const all = getAllJournal();
+export function getJournalBySlug(slug: string, lang: Lang = "en"): JournalEntry | null {
+  const all = getAllJournal(lang);
   return all.find((j) => j.slug === slug) ?? null;
 }
 
-export function getJournalSlugs(): string[] {
-  return getAllJournal().map((j) => j.slug);
+export function getJournalSlugs(lang: Lang = "en"): string[] {
+  return getAllJournal(lang).map((j) => j.slug);
 }

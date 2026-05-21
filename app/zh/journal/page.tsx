@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { JournalListPage } from "@/components/pages/journal-list-page";
-import { enDict } from "@/lib/i18n";
+import { zhDict } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: enDict.journal.metaTitle,
-  description: enDict.journal.metaDescription,
+  title: zhDict.journal.metaTitle,
+  description: zhDict.journal.metaDescription,
 };
 
 export default function Page() {
-  return <JournalListPage dict={enDict} />;
+  return <JournalListPage dict={zhDict} />;
 }

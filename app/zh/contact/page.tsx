@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { ContactPage } from "@/components/pages/contact-page";
-import { enDict } from "@/lib/i18n";
+import { zhDict } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: enDict.contact.metaTitle,
-  description: enDict.contact.metaDescription,
+  title: zhDict.contact.metaTitle,
+  description: zhDict.contact.metaDescription,
 };
 
 export default function Page() {
-  return <ContactPage dict={enDict} />;
+  return <ContactPage dict={zhDict} />;
 }

@@ -1,6 +1,6 @@
 import { HomePage } from "@/components/pages/home-page";
-import { enDict } from "@/lib/i18n";
+import { zhDict } from "@/lib/i18n";
 
 export default function Page() {
-  return <HomePage dict={enDict} />;
+  return <HomePage dict={zhDict} />;
 }

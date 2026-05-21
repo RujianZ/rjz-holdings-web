@@ -1,8 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import type { Lang } from "@/lib/i18n";
 
-const VENTURES_DIR = path.join(process.cwd(), "content", "ventures");
+function venturesDir(lang: Lang): string {
+  return path.join(
+    process.cwd(),
+    "content",
+    lang === "zh" ? "zh/ventures" : "ventures"
+  );
+}
 
 export type VentureStatus = "active" | "coming-soon" | "archived";
 
@@ -24,9 +31,9 @@ export interface Venture extends VentureMeta {
   body: string;
 }
 
-function readVentureFile(filename: string): Venture {
+function readVentureFile(filename: string, dir: string): Venture {
   const slug = filename.replace(/\.mdx?$/, "");
-  const raw = fs.readFileSync(path.join(VENTURES_DIR, filename), "utf8");
+  const raw = fs.readFileSync(path.join(dir, filename), "utf8");
   const { data, content } = matter(raw);
   return {
     slug: (data.slug as string) ?? slug,
@@ -44,25 +51,24 @@ function readVentureFile(filename: string): Venture {
   };
 }
 
-export function getAllVentures(): Venture[] {
-  if (!fs.existsSync(VENTURES_DIR)) return [];
-  const files = fs
-    .readdirSync(VENTURES_DIR)
-    .filter((f) => /\.mdx?$/.test(f));
+export function getAllVentures(lang: Lang = "en"): Venture[] {
+  const dir = venturesDir(lang);
+  if (!fs.existsSync(dir)) return [];
+  const files = fs.readdirSync(dir).filter((f) => /\.mdx?$/.test(f));
   return files
-    .map(readVentureFile)
+    .map((f) => readVentureFile(f, dir))
     .sort((a, b) => a.order - b.order);
 }
 
-export function getAllVentureMetas(): VentureMeta[] {
-  return getAllVentures().map(({ body: _body, ...meta }) => meta);
+export function getAllVentureMetas(lang: Lang = "en"): VentureMeta[] {
+  return getAllVentures(lang).map(({ body: _body, ...meta }) => meta);
 }
 
-export function getVentureBySlug(slug: string): Venture | null {
-  const all = getAllVentures();
+export function getVentureBySlug(slug: string, lang: Lang = "en"): Venture | null {
+  const all = getAllVentures(lang);
   return all.find((v) => v.slug === slug) ?? null;
 }
 
-export function getVentureSlugs(): string[] {
-  return getAllVentures().map((v) => v.slug);
+export function getVentureSlugs(lang: Lang = "en"): string[] {
+  return getAllVentures(lang).map((v) => v.slug);
 }

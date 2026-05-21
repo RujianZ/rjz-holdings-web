@@ -26,17 +26,38 @@ const CARD_WIDTH = 320;
 const CARD_GAP = 16;
 const STEP = CARD_WIDTH + CARD_GAP;
 
-interface VenturesScrollerProps {
-  ventures: VentureMeta[];
+interface ScrollerLabels {
+  index: string;
+  label: string;
+  title: string;
+  description: string;
+  allInView: string;
+  dragToScroll: string;
 }
 
-export function VenturesScroller({ ventures }: VenturesScrollerProps) {
+interface VenturesScrollerProps {
+  ventures: VentureMeta[];
+  labels: ScrollerLabels;
+  ventureLabels: {
+    caseStudy: string;
+    comingSoon: string;
+  };
+  baseUrl: string;
+}
+
+export function VenturesScroller({
+  ventures,
+  labels,
+  ventureLabels,
+  baseUrl,
+}: VenturesScrollerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const containerWidthMV = useMotionValue(0);
   const [bounds, setBounds] = useState({ left: 0, right: 0 });
   const [active, setActive] = useState(0);
+  const [fits, setFits] = useState(false);
   const inView = useInView(containerRef, { once: true, amount: 0.15 });
 
   const total = ventures.length;
@@ -49,9 +70,18 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
     const containerWidth = container.offsetWidth;
     const trackWidth = track.scrollWidth;
     containerWidthMV.set(containerWidth);
-    const left = Math.min(0, containerWidth - trackWidth);
-    setBounds({ left, right: 0 });
-  }, [containerWidthMV]);
+    const slack = containerWidth - trackWidth;
+    if (slack >= 0) {
+      const centerOffset = slack / 2;
+      x.set(centerOffset);
+      setBounds({ left: centerOffset, right: centerOffset });
+      setFits(true);
+      setActive(Math.floor(total / 2));
+    } else {
+      setBounds({ left: slack, right: 0 });
+      setFits(false);
+    }
+  }, [containerWidthMV, total, x]);
 
   useLayoutEffect(() => {
     recompute();
@@ -102,10 +132,10 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
     <section className="flex flex-col gap-10">
       <div className="mx-auto w-full max-w-[1200px] px-6 md:px-10">
         <SectionHeader
-          index="01"
-          label="Ventures"
-          title="Operating companies under the RJZ umbrella."
-          description="Each venture is structured independently. Drag to explore."
+          index={labels.index}
+          label={labels.label}
+          title={labels.title}
+          description={labels.description}
           action={
             <div className="flex items-center gap-1">
               <button
@@ -113,7 +143,7 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
                 onClick={prev}
                 aria-label="Previous venture"
                 className="inline-flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground disabled:opacity-30"
-                disabled={active === 0}
+                disabled={fits || active === 0}
               >
                 <ArrowLeft size={14} strokeWidth={1.5} />
               </button>
@@ -122,7 +152,7 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
                 onClick={next}
                 aria-label="Next venture"
                 className="inline-flex h-9 w-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground disabled:opacity-30"
-                disabled={active === total - 1}
+                disabled={fits || active === total - 1}
               >
                 <ArrowRight size={14} strokeWidth={1.5} />
               </button>
@@ -133,15 +163,18 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
 
       <div
         ref={containerRef}
-        className="overflow-hidden cursor-grab active:cursor-grabbing"
+        className={cn(
+          "overflow-hidden",
+          fits ? "" : "cursor-grab active:cursor-grabbing"
+        )}
       >
         <motion.div
           ref={trackRef}
           className="flex gap-4 pl-6 md:pl-10 pr-6 md:pr-10 select-none"
           style={{ x, width: "max-content" }}
-          drag="x"
+          drag={fits ? false : "x"}
           dragConstraints={bounds}
-          dragElastic={0.12}
+          dragElastic={fits ? 0 : 0.12}
           dragMomentum
           onDragEnd={handleDragEnd}
         >
@@ -154,7 +187,12 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
               inView={inView}
               entranceDelay={i * 0.09}
             >
-              <VentureCard venture={venture} width={CARD_WIDTH} />
+              <VentureCard
+                venture={venture}
+                width={CARD_WIDTH}
+                baseUrl={baseUrl}
+                labels={ventureLabels}
+              />
             </ScrollerItem>
           ))}
         </motion.div>
@@ -183,7 +221,7 @@ export function VenturesScroller({ ventures }: VenturesScrollerProps) {
           ))}
         </div>
         <span className="mono-label text-muted-foreground hidden md:inline">
-          Drag to scroll
+          {fits ? labels.allInView : labels.dragToScroll}
         </span>
       </div>
     </section>

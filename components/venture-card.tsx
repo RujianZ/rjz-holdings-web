@@ -6,9 +6,24 @@ import type { VentureMeta } from "@/lib/ventures";
 interface VentureCardProps {
   venture: VentureMeta;
   width?: number;
+  baseUrl?: string;
+  labels?: {
+    caseStudy: string;
+    comingSoon: string;
+  };
 }
 
-export function VentureCard({ venture, width = 320 }: VentureCardProps) {
+const defaultLabels = {
+  caseStudy: "Case study",
+  comingSoon: "Coming soon",
+};
+
+export function VentureCard({
+  venture,
+  width = 320,
+  baseUrl = "/ventures",
+  labels = defaultLabels,
+}: VentureCardProps) {
   const isComingSoon = venture.status === "coming-soon";
 
   const content = (
@@ -60,10 +75,10 @@ export function VentureCard({ venture, width = 320 }: VentureCardProps) {
             {venture.year}
           </span>
           {isComingSoon ? (
-            <span className="mono-label text-accent">Coming soon</span>
+            <span className="mono-label text-accent">{labels.comingSoon}</span>
           ) : (
             <span className="mono-label inline-flex items-center gap-1 text-foreground transition-colors group-hover:text-accent">
-              Case study
+              {labels.caseStudy}
               <ArrowUpRight size={12} strokeWidth={1.5} />
             </span>
           )}
@@ -76,7 +91,7 @@ export function VentureCard({ venture, width = 320 }: VentureCardProps) {
 
   return (
     <Link
-      href={`/ventures/${venture.slug}`}
+      href={`${baseUrl}/${venture.slug}`}
       className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       draggable={false}
     >

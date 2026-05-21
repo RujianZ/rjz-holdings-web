@@ -2,21 +2,21 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { JournalDetailPage } from "@/components/pages/journal-detail-page";
 import { getJournalBySlug, getJournalSlugs } from "@/lib/journal";
-import { enDict } from "@/lib/i18n";
+import { zhDict } from "@/lib/i18n";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
-  return getJournalSlugs("en").map((slug) => ({ slug }));
+  return getJournalSlugs("zh").map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const entry = getJournalBySlug(slug, "en");
+  const entry = getJournalBySlug(slug, "zh");
   if (!entry) return {};
   return {
     title: entry.title,
@@ -26,12 +26,12 @@ export async function generateMetadata({
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
-  const entry = getJournalBySlug(slug, "en");
+  const entry = getJournalBySlug(slug, "zh");
   if (!entry) notFound();
 
   const { default: Content } = await import(
-    `@/content/journal/${entry.slug}.mdx`
+    `@/content/zh/journal/${entry.slug}.mdx`
   );
 
-  return <JournalDetailPage entry={entry} dict={enDict} Content={Content} />;
+  return <JournalDetailPage entry={entry} dict={zhDict} Content={Content} />;
 }

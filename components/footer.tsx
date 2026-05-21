@@ -1,7 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BrandMark } from "@/components/brand-mark";
+import { enDict, zhDict } from "@/lib/i18n";
 
 export function Footer() {
+  const pathname = usePathname() || "/";
+  const isZh = pathname === "/zh" || pathname.startsWith("/zh/");
+  const dict = isZh ? zhDict : enDict;
   const year = new Date().getFullYear();
 
   return (
@@ -15,25 +22,58 @@ export function Footer() {
             </span>
           </div>
           <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-            A Delaware-registered holding company for software, capital, and ideas.
+            {dict.footer.blurb}
           </p>
         </div>
 
         <div className="md:col-span-3 flex flex-col gap-3">
-          <span className="mono-label text-muted-foreground">Navigate</span>
+          <span className="mono-label text-muted-foreground">
+            {dict.footer.navLabel}
+          </span>
           <ul className="flex flex-col gap-2 text-sm">
-            <li><Link href="/ventures" className="hover:text-accent transition-colors">Ventures</Link></li>
-            <li><Link href="/about" className="hover:text-accent transition-colors">About</Link></li>
-            <li><Link href="/journal" className="hover:text-accent transition-colors">Journal</Link></li>
-            <li><Link href="/contact" className="hover:text-accent transition-colors">Contact</Link></li>
+            <li>
+              <Link
+                href={`${dict.prefix}/ventures`}
+                className="hover:text-accent transition-colors"
+              >
+                {dict.nav.ventures}
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`${dict.prefix}/about`}
+                className="hover:text-accent transition-colors"
+              >
+                {dict.nav.about}
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`${dict.prefix}/journal`}
+                className="hover:text-accent transition-colors"
+              >
+                {dict.nav.journal}
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={`${dict.prefix}/contact`}
+                className="hover:text-accent transition-colors"
+              >
+                {dict.nav.contact}
+              </Link>
+            </li>
           </ul>
         </div>
 
         <div className="md:col-span-4 flex flex-col gap-3">
-          <span className="mono-label text-muted-foreground">Registered</span>
+          <span className="mono-label text-muted-foreground">
+            {dict.footer.registeredLabel}
+          </span>
           <p className="text-sm leading-relaxed">
-            Delaware, USA<br />
-            Est. 2026
+            {dict.footer.registeredA}
+            <br />
+            {dict.footer.registeredB}
           </p>
         </div>
       </div>
@@ -41,7 +81,7 @@ export function Footer() {
       <div className="border-t border-border">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
           <span className="mono-label text-muted-foreground">
-            © {year} RJZ Holdings LLC
+            © {year} {dict.footer.copyright}
           </span>
           <span className="mono-label text-muted-foreground">
             N 42.1875° · W 71.3070°

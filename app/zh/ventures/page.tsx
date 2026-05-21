@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { VenturesListPage } from "@/components/pages/ventures-list-page";
-import { enDict } from "@/lib/i18n";
+import { zhDict } from "@/lib/i18n";
 
 export const metadata: Metadata = {
-  title: enDict.ventures.metaTitle,
-  description: enDict.ventures.metaDescription,
+  title: zhDict.ventures.metaTitle,
+  description: zhDict.ventures.metaDescription,
 };
 
 export default function Page() {
-  return <VenturesListPage dict={enDict} />;
+  return <VenturesListPage dict={zhDict} />;
 }
