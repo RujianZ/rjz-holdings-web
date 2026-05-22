@@ -100,6 +100,7 @@ export interface Dict {
     coverCaption: string;
     statusLabels: {
       active: string;
+      "pre-launch": string;
       "coming-soon": string;
       archived: string;
     };
@@ -168,7 +169,7 @@ export const enDict: Dict = {
     eyebrow: "EST. 2026 · DELAWARE",
     titleA: "Operates software. Holds equity. Allocates capital.",
     titleB: "",
-    description: "Three projects. One umbrella.",
+    description: "Four projects. One umbrella.",
     viewVentures: "View ventures",
     aboutLink: "About RJZ →",
     indexLabel: "Index",
@@ -178,15 +179,16 @@ export const enDict: Dict = {
     ventures: {
       index: "01",
       label: "Ventures",
-      title: "Operating companies under the RJZ umbrella.",
-      description: "Some independently incorporated. Some operated directly.",
+      title: "What runs under RJZ.",
+      description:
+        "Externally co-owned, independently incorporated, or operating toward launch. RJZ holds equity, not control.",
     },
     cta: {
       index: "03",
       label: "Contact",
       title: "Working on something the umbrella might fit?",
       description:
-        "Investment, consulting, or operating partnership inquiries are welcome. Responses are written by a human.",
+        "Investment, consulting, or operating inquiries welcome. Replies are human.",
       button: "Get in touch",
     },
   },
@@ -201,7 +203,7 @@ export const enDict: Dict = {
     mandateLabel: "Mandate",
     mandateBody: [
       "RJZ Holdings LLC is a Delaware-registered single-member LLC established in 2026. It operates software projects directly and holds equity in externally co-owned ventures.",
-      "Some projects under RJZ are independently incorporated; others are operated directly. The Ventures section lists current status for each.",
+      "Some projects under RJZ are independently incorporated; others are operated directly. The Ventures section lists what RJZ holds equity in. The Lab section lists what's currently being built.",
     ],
     founderLabel: "Founder",
     founderName: "Rujian Zhang",
@@ -249,7 +251,7 @@ export const enDict: Dict = {
     label: "Lab",
     title: "Ideas and products in development.",
     description:
-      "What's being built or prototyped under RJZ. Some have a thesis. Some are tools. Some won't ship. Status reflects current state, not commitment.",
+      "What's being built or prototyped under RJZ. Some have a thesis. Some are tools. Some won't ship.\n\nStatus reflects current state, not commitment.",
     statusLabel: "Status",
     yearLabel: "Year",
     thesisLabel: "The thesis",
@@ -268,6 +270,7 @@ export const enDict: Dict = {
     coverCaption: "hero image — supply 1600×1000+",
     statusLabels: {
       active: "Active",
+      "pre-launch": "Pre-launch",
       "coming-soon": "Coming soon",
       archived: "Archived",
     },
@@ -441,6 +444,7 @@ export const zhDict: Dict = {
     coverCaption: "封面图 — 建议 1600×1000 起",
     statusLabels: {
       active: "运营中",
+      "pre-launch": "上线前",
       "coming-soon": "即将上线",
       archived: "已归档",
     },

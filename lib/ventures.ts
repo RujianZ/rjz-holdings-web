@@ -11,7 +11,7 @@ function venturesDir(lang: Lang): string {
   );
 }
 
-export type VentureStatus = "active" | "coming-soon" | "archived";
+export type VentureStatus = "active" | "pre-launch" | "coming-soon" | "archived";
 
 export interface VentureMeta {
   slug: string;
@@ -21,6 +21,7 @@ export interface VentureMeta {
   index: string;
   year: string;
   description: string;
+  notes?: string[];
   status: VentureStatus;
   order: number;
   role?: string;
@@ -43,6 +44,7 @@ function readVentureFile(filename: string, dir: string): Venture {
     index: data.index as string,
     year: data.year as string,
     description: data.description as string,
+    notes: data.notes as string[] | undefined,
     status: ((data.status as VentureStatus) ?? "active"),
     order: (data.order as number) ?? 0,
     role: data.role as string | undefined,

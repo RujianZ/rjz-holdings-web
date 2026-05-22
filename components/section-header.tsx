@@ -58,9 +58,11 @@ export function SectionHeader({
             </h2>
           )}
           {description && (
-            <p className="text-muted-foreground text-base leading-relaxed">
-              {description}
-            </p>
+            <div className="flex flex-col gap-3 text-muted-foreground text-base leading-relaxed">
+              {description.split("\n\n").map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
           )}
         </motion.div>
       )}

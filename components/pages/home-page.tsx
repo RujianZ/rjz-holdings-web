@@ -5,6 +5,7 @@ import { ScanLine } from "@/components/scan-line";
 import { Typewriter } from "@/components/typewriter";
 import { Stagger, StaggerItem, Reveal } from "@/components/reveal";
 import { LabCard } from "@/components/lab-card";
+import { VentureCard } from "@/components/venture-card";
 import {
   getFeaturedVentureMetas,
   type VentureMeta,
@@ -141,66 +142,11 @@ function VenturesSection({
       />
 
       <Stagger mode="view" staggerDelay={0.08} className="grid gap-px bg-border">
-        {ventures.map((v) => {
-          const isComingSoon = v.status === "coming-soon";
-          const Row = (
-            <article className="group h-full flex flex-col justify-between p-8 md:p-10 bg-background min-h-[220px] gap-6">
-              <div className="flex items-start justify-between gap-6">
-                <div className="flex items-center gap-5">
-                  <div
-                    className={
-                      isComingSoon
-                        ? "flex h-10 w-10 items-center justify-center border border-dashed border-border text-muted-foreground"
-                        : "flex h-10 w-10 items-center justify-center bg-foreground text-background"
-                    }
-                  >
-                    {v.monogram}
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="mono-label text-muted-foreground">
-                      {v.index} · {v.category}
-                    </span>
-                    <h3 className="text-xl leading-tight">{v.name}</h3>
-                  </div>
-                </div>
-                <span className="mono-label text-muted-foreground shrink-0">
-                  {v.year}
-                </span>
-              </div>
-
-              <div className="flex items-end justify-between gap-6">
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-xl">
-                  {v.description}
-                </p>
-                {isComingSoon ? (
-                  <span className="mono-label text-accent shrink-0">
-                    {dict.ventures.comingSoon}
-                  </span>
-                ) : (
-                  <span className="mono-label inline-flex items-center gap-1 text-foreground transition-colors group-hover:text-accent shrink-0">
-                    {dict.ventures.readCaseStudy}
-                    <ArrowUpRight size={12} strokeWidth={1.5} />
-                  </span>
-                )}
-              </div>
-            </article>
-          );
-
-          return (
-            <StaggerItem key={v.slug}>
-              {isComingSoon ? (
-                Row
-              ) : (
-                <Link
-                  href={`${dict.prefix}/ventures/${v.slug}`}
-                  className="block h-full"
-                >
-                  {Row}
-                </Link>
-              )}
-            </StaggerItem>
-          );
-        })}
+        {ventures.map((v) => (
+          <StaggerItem key={v.slug}>
+            <VentureCard venture={v} dict={dict} />
+          </StaggerItem>
+        ))}
       </Stagger>
     </section>
   );
