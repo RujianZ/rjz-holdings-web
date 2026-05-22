@@ -64,6 +64,18 @@ export function getAllVentureMetas(lang: Lang = "en"): VentureMeta[] {
   return getAllVentures(lang).map(({ body: _body, ...meta }) => meta);
 }
 
+/**
+ * Ventures surfaced in lists / home section.
+ * The remaining MDX files (LogicLink, HNDSL Portal) are kept as
+ * deep-linkable detail pages but no longer treated as standalone
+ * external ventures — they've been moved to the Lab section.
+ */
+const FEATURED_SLUGS = new Set(["zzup"]);
+
+export function getFeaturedVentureMetas(lang: Lang = "en"): VentureMeta[] {
+  return getAllVentureMetas(lang).filter((v) => FEATURED_SLUGS.has(v.slug));
+}
+
 export function getVentureBySlug(slug: string, lang: Lang = "en"): Venture | null {
   const all = getAllVentures(lang);
   return all.find((v) => v.slug === slug) ?? null;

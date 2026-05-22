@@ -4,16 +4,23 @@ import { SectionHeader } from "@/components/section-header";
 import { ScanLine } from "@/components/scan-line";
 import { Typewriter } from "@/components/typewriter";
 import { Stagger, StaggerItem, Reveal } from "@/components/reveal";
-import { getAllVentureMetas, type VentureMeta } from "@/lib/ventures";
+import { LabCard } from "@/components/lab-card";
+import {
+  getFeaturedVentureMetas,
+  type VentureMeta,
+} from "@/lib/ventures";
+import { getAllLabItems, type LabItem } from "@/lib/lab";
 import type { Dict } from "@/lib/i18n";
 
 export function HomePage({ dict }: { dict: Dict }) {
-  const ventures = getAllVentureMetas(dict.lang);
+  const ventures = getFeaturedVentureMetas(dict.lang);
+  const lab = getAllLabItems(dict.lang);
 
   return (
     <div className="flex flex-col gap-24 md:gap-32 pt-12 md:pt-24">
       <Hero dict={dict} />
       <VenturesSection ventures={ventures} dict={dict} />
+      <LabSection items={lab} dict={dict} />
       <FooterCTA dict={dict} />
     </div>
   );
@@ -194,6 +201,39 @@ function VenturesSection({
             </StaggerItem>
           );
         })}
+      </Stagger>
+    </section>
+  );
+}
+
+function LabSection({
+  items,
+  dict,
+}: {
+  items: LabItem[];
+  dict: Dict;
+}) {
+  if (items.length === 0) return null;
+
+  return (
+    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10 flex flex-col gap-10">
+      <SectionHeader
+        index={dict.lab.index}
+        label={dict.lab.label}
+        title={dict.lab.title}
+        description={dict.lab.description}
+      />
+
+      <Stagger
+        mode="view"
+        staggerDelay={0.1}
+        className="grid gap-px bg-border"
+      >
+        {items.map((item) => (
+          <StaggerItem key={item.slug}>
+            <LabCard item={item} dict={dict} />
+          </StaggerItem>
+        ))}
       </Stagger>
     </section>
   );

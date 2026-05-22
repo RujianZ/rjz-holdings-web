@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { getAllVentureMetas } from "@/lib/ventures";
+import { getFeaturedVentureMetas } from "@/lib/ventures";
 import type { Dict } from "@/lib/i18n";
 
 export function VenturesListPage({ dict }: { dict: Dict }) {
-  const ventures = getAllVentureMetas(dict.lang);
+  const ventures = getFeaturedVentureMetas(dict.lang);
   const d = dict.ventures;
 
   return (

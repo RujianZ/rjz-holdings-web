@@ -7,6 +7,7 @@ export interface Dict {
 
   nav: {
     ventures: string;
+    lab: string;
     about: string;
     contact: string;
     switchTo: string;
@@ -72,6 +73,20 @@ export interface Dict {
     description: string;
     readCaseStudy: string;
     comingSoon: string;
+  };
+
+  lab: {
+    metaTitle: string;
+    metaDescription: string;
+    index: string;
+    label: string;
+    title: string;
+    description: string;
+    statusLabel: string;
+    yearLabel: string;
+    thesisLabel: string;
+    descriptionLabel: string;
+    emptyMessage: string;
   };
 
   ventureDetail: {
@@ -143,6 +158,7 @@ export const enDict: Dict = {
 
   nav: {
     ventures: "Ventures",
+    lab: "Lab",
     about: "About",
     contact: "Contact",
     switchTo: "中文",
@@ -166,7 +182,7 @@ export const enDict: Dict = {
       description: "Some independently incorporated. Some operated directly.",
     },
     cta: {
-      index: "02",
+      index: "03",
       label: "Contact",
       title: "Working on something the umbrella might fit?",
       description:
@@ -226,6 +242,21 @@ export const enDict: Dict = {
     comingSoon: "Coming soon",
   },
 
+  lab: {
+    metaTitle: "Lab",
+    metaDescription: "Ideas and products in development under RJZ.",
+    index: "02",
+    label: "Lab",
+    title: "Ideas and products in development.",
+    description:
+      "What's being built or prototyped under RJZ. Some have a thesis. Some are tools. Some won't ship. Status reflects current state, not commitment.",
+    statusLabel: "Status",
+    yearLabel: "Year",
+    thesisLabel: "The thesis",
+    descriptionLabel: "Description",
+    emptyMessage: "No items in the lab yet.",
+  },
+
   ventureDetail: {
     allVentures: "All ventures",
     briefLabel: "Brief",
@@ -258,7 +289,7 @@ export const enDict: Dict = {
   contact: {
     metaTitle: "Contact",
     metaDescription: "Get in touch with RJZ Holdings.",
-    section: "02 / Contact",
+    section: "03 / Contact",
     titleA: "A real person reads this.",
     titleB: "No forms, no funnels.",
     description:
@@ -301,6 +332,7 @@ export const zhDict: Dict = {
 
   nav: {
     ventures: "公司组合",
+    lab: "实验室",
     about: "关于",
     contact: "联系",
     switchTo: "EN",
@@ -325,7 +357,7 @@ export const zhDict: Dict = {
       description: "部分独立注册，部分直接运营。",
     },
     cta: {
-      index: "02",
+      index: "03",
       label: "联系",
       title: "在做的事可能适合 RJZ 伞下？",
       description: "欢迎投资、咨询或运营合作的洽谈。回复来自真人。",
@@ -383,6 +415,21 @@ export const zhDict: Dict = {
     comingSoon: "即将上线",
   },
 
+  lab: {
+    metaTitle: "实验室",
+    metaDescription: "RJZ 旗下正在开发的想法与产品。",
+    index: "02",
+    label: "实验室",
+    title: "正在开发的想法与产品。",
+    description:
+      "RJZ 旗下正在构建或原型阶段的项目。有的有思想立场，有的是工具，有的可能不会上线。状态反映当前情况，不代表长期承诺。",
+    statusLabel: "状态",
+    yearLabel: "年份",
+    thesisLabel: "立场",
+    descriptionLabel: "说明",
+    emptyMessage: "实验室暂无项目。",
+  },
+
   ventureDetail: {
     allVentures: "返回公司列表",
     briefLabel: "简介",
@@ -414,7 +461,7 @@ export const zhDict: Dict = {
   contact: {
     metaTitle: "联系",
     metaDescription: "联系 RJZ Holdings。",
-    section: "02 / 联系",
+    section: "03 / 联系",
     titleA: "回复你的是真人。",
     titleB: "没有表单，也没有营销漏斗。",
     description: "邮件是最快的方式。在主题里说明涉及哪家公司或什么主题，便于路由。",
