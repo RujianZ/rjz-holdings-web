@@ -342,11 +342,10 @@ export const zhDict: Dict = {
   },
 
   home: {
-    eyebrow: "成立于 2026 · 特拉华州",
-    titleA: "一家控股公司",
-    titleB: "承载软件、资本与构想。",
-    description:
-      "RJZ Holdings 持有旗下运营公司的股权，跨项目分配资本，为伞下的所有工作提供机构化结构。",
+    eyebrow: "成立于 2026 · 美国 特拉华州",
+    titleA: "运营软件。持有股权。配置资本。",
+    titleB: "",
+    description: "四个项目，一把伞。",
     viewVentures: "查看公司组合",
     aboutLink: "关于 RJZ →",
     indexLabel: "编号",
@@ -356,14 +355,15 @@ export const zhDict: Dict = {
     ventures: {
       index: "01",
       label: "公司组合",
-      title: "RJZ 伞下的运营公司。",
-      description: "部分独立注册，部分直接运营。",
+      title: "RJZ 旗下的项目。",
+      description:
+        "外部联合持股、独立注册成立、或正在筹备上线。RJZ 持有股权，不掌握控制权。",
     },
     cta: {
       index: "03",
       label: "联系",
-      title: "在做的事可能适合 RJZ 伞下？",
-      description: "欢迎投资、咨询或运营合作的洽谈。回复来自真人。",
+      title: "你在做的事，伞下可能合适？",
+      description: "投资、咨询、运营合作的洽谈都欢迎。回复来自真人。",
       button: "联系我们",
     },
   },
@@ -371,20 +371,20 @@ export const zhDict: Dict = {
   about: {
     metaTitle: "关于",
     metaDescription:
-      "RJZ Holdings LLC 是一家于 2026 年在特拉华州注册的控股公司。",
+      "RJZ Holdings LLC 是一家于 2026 年在美国特拉华州注册成立的单一成员 LLC。",
     section: "00 / 关于",
-    titleA: "RJZ Holdings 是承载工作的",
-    titleB: "底层结构。",
+    titleA: "RJZ Holdings 是",
+    titleB: "工作背后的结构。",
     mandateLabel: "使命",
     mandateBody: [
-      "RJZ Holdings LLC 是一家于 2026 年在美国特拉华州注册成立的控股公司，存在的目的是持有旗下运营公司的股权、跨项目管理资本配置，并为软件开发、咨询服务、内容输出与投资活动提供机构化的伞形结构。",
-      "控股公司本身不直接面向终端用户提供产品或服务——具体业务由旗下各家运营公司承担。每家公司各自独立组织，详见公司组合一栏。",
+      "RJZ Holdings LLC 是一家于 2026 年在美国特拉华州注册成立的单一成员 LLC。它直接运营软件项目，同时持有与外部联合创办项目的股权。",
+      "RJZ 旗下的项目，有的独立注册法人，有的由 RJZ 直接运营。「公司组合」一栏列出 RJZ 持股的项目；「实验室」一栏列出当前正在构建的项目。",
     ],
     founderLabel: "创始人",
     founderName: "Rujian Zhang",
     founderBio: [
-      "RJZ Holdings LLC 创始人 / 唯一成员。同时跨三条业务线运营与开发：消费级社交软件、研究工具、法律科技——并以控股公司作为把三者串起来的机构结构。",
-      "当前直接参与运营的项目：zZuP!（联合创始人 & CSO）、LogicLink（独立开发者）、海南德赛利律所案件管理系统（独立开发者）。技术栈以 TypeScript / React / Next.js / Supabase / Python 为主。",
+      "RJZ Holdings LLC 创始人 / 唯一成员。同时在三条线上运营与开发——消费级社交软件、研究工具、法律科技——并以这家控股公司作为把三者绑在一起的法律和组织结构。",
+      "当前直接介入运营的项目：zZuP!（联合创始人 & CSO）、LogicLink（独立开发者）、HNDSL 案件管理系统（独立开发者，为海南德赛利律所打造）。技术栈以 TypeScript / React / Next.js / Supabase / Python 为主。",
       "据点位于美国马萨诸塞州 Medfield。",
     ],
     founderPortraitCaption: "800×1000 人像",
@@ -402,30 +402,31 @@ export const zhDict: Dict = {
     },
     structureLabel: "结构",
     structureBody: [
-      "伞下每家公司都有独立的法律实体、股权结构与运营计划。控股公司提供共享资源——资本、基础设施、品牌——但不稀释各运营公司的自主性。",
-      "这一页是记录，不是市场宣传。任何不清楚的地方，欢迎来问。",
+      "部分项目独立注册法人、由外部联合持有；部分项目直接在 RJZ 旗下运营。每一个项目都有自己的路线图。",
+      "RJZ 在所有项目之间提供共享的资本、基础设施和品牌。",
     ],
   },
 
   ventures: {
     metaTitle: "公司组合",
-    metaDescription: "RJZ Holdings 伞下的运营公司。",
+    metaDescription: "RJZ 旗下的运营项目。",
     section: "01 / 公司组合",
-    titleA: "RJZ 伞下的",
-    titleB: "全部运营公司。",
-    description: "每一家都有完整的案例。状态反映当前运营情况，不代表长期意图。",
+    titleA: "RJZ 旗下的",
+    titleB: "全部项目。",
+    description:
+      "每一个项目都有完整的案例。状态反映当前情况，不代表长期承诺。",
     readCaseStudy: "查看案例",
     comingSoon: "即将上线",
   },
 
   lab: {
     metaTitle: "实验室",
-    metaDescription: "RJZ 旗下正在开发的想法与产品。",
+    metaDescription: "RJZ 旗下正在开发的想法和产品。",
     index: "02",
     label: "实验室",
-    title: "正在开发的想法与产品。",
+    title: "正在开发的想法和产品。",
     description:
-      "RJZ 旗下正在构建或原型阶段的项目。有的有思想立场，有的是工具，有的可能不会上线。状态反映当前情况，不代表长期承诺。",
+      "在 RJZ 旗下构建或处于原型阶段的项目。有的有立场，有的是工具，有的不会上线。\n\n状态反映当前进度，不是承诺。",
     statusLabel: "状态",
     yearLabel: "年份",
     thesisLabel: "立场",
@@ -467,8 +468,8 @@ export const zhDict: Dict = {
     metaDescription: "联系 RJZ Holdings。",
     section: "03 / 联系",
     titleA: "回复你的是真人。",
-    titleB: "没有表单，也没有营销漏斗。",
-    description: "邮件是最快的方式。在主题里说明涉及哪家公司或什么主题，便于路由。",
+    titleB: "没有表单，没有漏斗。",
+    description: "邮件最快。请在主题里写清是哪家项目或哪类事项，方便分发。",
     channelsLabel: "联系方式",
     channels: {
       general: "通用",
@@ -484,7 +485,7 @@ export const zhDict: Dict = {
   },
 
   footer: {
-    blurb: "一家在特拉华州注册的控股公司——承载软件、资本与构想。",
+    blurb: "一家在美国特拉华州注册的控股公司。运营软件，持有股权，配置资本。",
     navLabel: "导航",
     registeredLabel: "注册信息",
     registeredA: "美国 特拉华州",
@@ -495,8 +496,8 @@ export const zhDict: Dict = {
   notFound: {
     eyebrow: "错误 / 404",
     title: "这个地址下什么也没有。",
-    body: "你访问的页面不存在，或者还没建好。",
-    button: "返回首页",
+    body: "你要找的页面不存在，或者还没建好。",
+    button: "回首页",
   },
 };
 
