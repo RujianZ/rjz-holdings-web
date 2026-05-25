@@ -4,33 +4,34 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface BrandMarkProps {
-  variant?: "default" | "muted";
   className?: string;
 }
 
-export function BrandMark({ variant = "default", className }: BrandMarkProps) {
+export function BrandMark({ className }: BrandMarkProps) {
   return (
-    <span
-      className={cn("relative inline-block h-3 w-3 shrink-0", className)}
+    <motion.span
       aria-hidden
+      className={cn(
+        "inline-block h-5 w-[22px] shrink-0 text-foreground",
+        className
+      )}
+      animate={{ opacity: [0.88, 1, 0.88] }}
+      transition={{
+        duration: 3.6,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
     >
-      <span
-        className={cn(
-          "absolute inset-0",
-          variant === "muted" ? "bg-muted-foreground" : "bg-foreground"
-        )}
-      />
-      <motion.span
-        className="absolute -right-1 -top-1 h-1.5 w-1.5 rounded-full bg-accent"
-        initial={{ opacity: 0.65 }}
-        animate={{ opacity: [0.65, 1, 0.65] }}
-        transition={{
-          duration: 3.2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-    </span>
+      <svg
+        viewBox="0 0 100 90"
+        fill="currentColor"
+        className="h-full w-full"
+      >
+        <path d="M 22 80 Q 26 50 33 32 Q 38 55 44 80 L 39 78 Z" />
+        <path d="M 40 80 Q 46 45 55 18 Q 62 50 68 80 L 62 78 Z" />
+        <path d="M 62 82 Q 72 38 84 4 Q 88 42 92 82 L 84 80 Z" />
+      </svg>
+    </motion.span>
   );
 }
 

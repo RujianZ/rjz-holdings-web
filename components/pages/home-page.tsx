@@ -2,10 +2,12 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
 import { ScanLine } from "@/components/scan-line";
+import { HeroBackground } from "@/components/hero-background";
 import { Typewriter } from "@/components/typewriter";
 import { Stagger, StaggerItem, Reveal } from "@/components/reveal";
 import { LabCard } from "@/components/lab-card";
 import { VentureCard } from "@/components/venture-card";
+import { SectionSpine } from "@/components/section-spine";
 import {
   getFeaturedVentureMetas,
   type VentureMeta,
@@ -17,21 +19,44 @@ export function HomePage({ dict }: { dict: Dict }) {
   const ventures = getFeaturedVentureMetas(dict.lang);
   const lab = getAllLabItems(dict.lang);
 
+  const spineSections = [
+    { id: "index", index: "00", label: dict.home.indexLabel },
+    {
+      id: "ventures",
+      index: dict.home.ventures.index,
+      label: dict.home.ventures.label,
+    },
+    { id: "lab", index: dict.lab.index, label: dict.lab.label },
+    {
+      id: "contact",
+      index: dict.home.cta.index,
+      label: dict.home.cta.label,
+    },
+  ];
+
   return (
-    <div className="flex flex-col gap-24 md:gap-32 pt-12 md:pt-24">
-      <Hero dict={dict} />
-      <VenturesSection ventures={ventures} dict={dict} />
-      <LabSection items={lab} dict={dict} />
-      <FooterCTA dict={dict} />
-    </div>
+    <>
+      <SectionSpine sections={spineSections} />
+      <div className="flex flex-col gap-24 md:gap-32 pt-12 md:pt-24">
+        <Hero dict={dict} />
+        <VenturesSection ventures={ventures} dict={dict} />
+        <LabSection items={lab} dict={dict} />
+        <FooterCTA dict={dict} />
+      </div>
+    </>
   );
 }
 
 function Hero({ dict }: { dict: Dict }) {
   return (
-    <section className="relative mx-auto w-full max-w-[1200px] px-6 md:px-10">
-      <ScanLine delay={0.15} duration={1.3} />
-      <div className="relative grid gap-16 md:grid-cols-12 md:gap-10 min-h-[60vh]">
+    <section
+      id="index"
+      className="relative w-full overflow-hidden scroll-mt-20"
+    >
+      <HeroBackground src="/hero-bg.png" />
+      <div className="relative mx-auto w-full max-w-[1200px] px-6 md:px-10">
+        <ScanLine delay={0.15} duration={1.3} />
+        <div className="relative grid gap-16 md:grid-cols-12 md:gap-10 min-h-[60vh]">
         <Stagger
           mode="load"
           staggerDelay={0.09}
@@ -120,6 +145,7 @@ function Hero({ dict }: { dict: Dict }) {
             </div>
           </Reveal>
         </aside>
+        </div>
       </div>
     </section>
   );
@@ -133,7 +159,10 @@ function VenturesSection({
   dict: Dict;
 }) {
   return (
-    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10 flex flex-col gap-10">
+    <section
+      id="ventures"
+      className="mx-auto w-full max-w-[1200px] px-6 md:px-10 flex flex-col gap-10 scroll-mt-20"
+    >
       <SectionHeader
         index={dict.home.ventures.index}
         label={dict.home.ventures.label}
@@ -162,7 +191,10 @@ function LabSection({
   if (items.length === 0) return null;
 
   return (
-    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10 flex flex-col gap-10">
+    <section
+      id="lab"
+      className="mx-auto w-full max-w-[1200px] px-6 md:px-10 flex flex-col gap-10 scroll-mt-20"
+    >
       <SectionHeader
         index={dict.lab.index}
         label={dict.lab.label}
@@ -187,7 +219,10 @@ function LabSection({
 
 function FooterCTA({ dict }: { dict: Dict }) {
   return (
-    <section className="mx-auto w-full max-w-[1200px] px-6 md:px-10">
+    <section
+      id="contact"
+      className="mx-auto w-full max-w-[1200px] px-6 md:px-10 scroll-mt-20"
+    >
       <Reveal mode="view" y={20}>
         <div className="border border-border p-10 md:p-16 flex flex-col gap-8">
           <span className="mono-label text-muted-foreground">

@@ -1,0 +1,12 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 90"
+  fill="currentColor"
+  role="img"
+  aria-label="RJZ Holdings"
+>
+  <!-- three sail / fin shapes, increasing in size left to right -->
+  <path d="M 22 80 Q 26 50 33 32 Q 38 55 44 80 L 39 78 Z" />
+  <path d="M 40 80 Q 46 45 55 18 Q 62 50 68 80 L 62 78 Z" />
+  <path d="M 62 82 Q 72 38 84 4 Q 88 42 92 82 L 84 80 Z" />
+</svg>
