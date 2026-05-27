@@ -7,7 +7,6 @@ export interface Dict {
 
   nav: {
     ventures: string;
-    lab: string;
     about: string;
     contact: string;
     switchTo: string;
@@ -73,20 +72,6 @@ export interface Dict {
     description: string;
     readCaseStudy: string;
     comingSoon: string;
-  };
-
-  lab: {
-    metaTitle: string;
-    metaDescription: string;
-    index: string;
-    label: string;
-    title: string;
-    description: string;
-    statusLabel: string;
-    yearLabel: string;
-    thesisLabel: string;
-    descriptionLabel: string;
-    emptyMessage: string;
   };
 
   ventureDetail: {
@@ -159,7 +144,6 @@ export const enDict: Dict = {
 
   nav: {
     ventures: "Ventures",
-    lab: "Lab",
     about: "About",
     contact: "Contact",
     switchTo: "中文",
@@ -167,9 +151,9 @@ export const enDict: Dict = {
 
   home: {
     eyebrow: "EST. 2026 · DELAWARE",
-    titleA: "Operates software. Holds equity. Allocates capital.",
+    titleA: "Holds equity in operating ventures.",
     titleB: "",
-    description: "Five projects. One umbrella.",
+    description: "One venture: zZuP!",
     viewVentures: "View ventures",
     aboutLink: "About RJZ →",
     indexLabel: "Index",
@@ -179,16 +163,16 @@ export const enDict: Dict = {
     ventures: {
       index: "01",
       label: "Ventures",
-      title: "What runs under RJZ.",
+      title: "The position on the books.",
       description:
-        "Externally co-owned, independently incorporated, or operating toward launch. RJZ holds equity, not control.",
+        "Externally co-owned, independently incorporated. RJZ holds equity, not control.",
     },
     cta: {
-      index: "03",
+      index: "02",
       label: "Contact",
-      title: "Working on something the umbrella might fit?",
+      title: "Investment or partnership inquiries?",
       description:
-        "Investment, consulting, or operating inquiries welcome. Replies are human.",
+        "Equity, acquisition, or governance conversations are welcome. Replies are human.",
       button: "Get in touch",
     },
   },
@@ -196,20 +180,19 @@ export const enDict: Dict = {
   about: {
     metaTitle: "About",
     metaDescription:
-      "RJZ Holdings LLC is a Delaware-registered single-member LLC established in 2026.",
+      "RJZ Holdings LLC is a Delaware-registered single-member LLC. A single-purpose holding company.",
     section: "00 / About",
-    titleA: "RJZ Holdings is the structure",
-    titleB: "behind the work.",
+    titleA: "RJZ Holdings is a single-purpose",
+    titleB: "holding company.",
     mandateLabel: "Mandate",
     mandateBody: [
-      "RJZ Holdings LLC is a Delaware-registered single-member LLC established in 2026. It operates software projects directly and holds equity in externally co-owned ventures.",
-      "Some projects under RJZ are independently incorporated; others are operated directly. The Ventures section lists what RJZ holds equity in. The Lab section lists what's currently being built.",
+      "RJZ Holdings LLC is a Delaware-registered single-member LLC established in 2026. Its function is to hold equity in operating ventures.",
+      "Currently RJZ Holdings holds one position: zZuP! Inc., an externally co-founded consumer social application. The Ventures section is the public record of that position.",
     ],
     founderLabel: "Founder",
     founderName: "Rujian Zhang",
     founderBio: [
-      "Founder & sole member of RJZ Holdings LLC. Operates and builds across three lines simultaneously — consumer social software, research tooling, and legal-tech — and uses the holding company as the institutional structure that ties them together.",
-      "Current portfolio under direct operating involvement: zZuP! (co-founder & CSO), LogicLink (sole developer), and the HNDSL Legal Portal (sole developer, built for Hainan Deselli Law Firm). Works in TypeScript / React / Next.js / Supabase / Python.",
+      "Founder & sole member of RJZ Holdings LLC. Co-founder of zZuP! Inc., the venture in which RJZ Holdings holds equity.",
       "Writes from Medfield, Massachusetts.",
     ],
     founderPortraitCaption: "800×1000 portrait",
@@ -227,8 +210,8 @@ export const enDict: Dict = {
     },
     structureLabel: "Structure",
     structureBody: [
-      "Some ventures are independently incorporated and externally co-owned; others are operated directly under RJZ. Each has its own roadmap.",
-      "RJZ provides shared capital, infrastructure, and brand across all projects.",
+      "RJZ Holdings runs no day-to-day operations and ships no product. Its function is legal and financial: holding the position, signing agreements, recording the record.",
+      "The portfolio is intentionally small and concentrated. New positions are added rarely, and only when the founder is directly involved in the underlying venture.",
     ],
   },
 
@@ -242,21 +225,6 @@ export const enDict: Dict = {
       "Each entry has its own case study. Status reflects current operating state, not lifetime intent.",
     readCaseStudy: "Read case study",
     comingSoon: "Coming soon",
-  },
-
-  lab: {
-    metaTitle: "Lab",
-    metaDescription: "Ideas and products in development under RJZ.",
-    index: "02",
-    label: "Lab",
-    title: "Ideas and products in development.",
-    description:
-      "What's being built or prototyped under RJZ. Some have a thesis. Some are tools. Some won't ship.\n\nStatus reflects current state, not commitment.",
-    statusLabel: "Status",
-    yearLabel: "Year",
-    thesisLabel: "The thesis",
-    descriptionLabel: "Description",
-    emptyMessage: "No items in the lab yet.",
   },
 
   ventureDetail: {
@@ -292,11 +260,11 @@ export const enDict: Dict = {
   contact: {
     metaTitle: "Contact",
     metaDescription: "Get in touch with RJZ Holdings.",
-    section: "03 / Contact",
+    section: "02 / Contact",
     titleA: "A real person reads this.",
     titleB: "No forms, no funnels.",
     description:
-      "Email is the fastest way. Mention which venture or topic the message is about so it routes correctly.",
+      "Email is the fastest way. Equity, acquisition, governance, or press — mention the topic so it routes correctly.",
     channelsLabel: "Channels",
     channels: {
       general: "General",
@@ -335,7 +303,6 @@ export const zhDict: Dict = {
 
   nav: {
     ventures: "公司组合",
-    lab: "实验室",
     about: "关于",
     contact: "联系",
     switchTo: "EN",
@@ -343,9 +310,9 @@ export const zhDict: Dict = {
 
   home: {
     eyebrow: "成立于 2026 · 美国 特拉华州",
-    titleA: "运营软件。持有股权。配置资本。",
+    titleA: "持有运营公司的股权。",
     titleB: "",
-    description: "五个项目，一把伞。",
+    description: "目前持有：zZuP!",
     viewVentures: "查看公司组合",
     aboutLink: "关于 RJZ →",
     indexLabel: "编号",
@@ -355,15 +322,15 @@ export const zhDict: Dict = {
     ventures: {
       index: "01",
       label: "公司组合",
-      title: "RJZ 旗下的项目。",
+      title: "账面上的持股。",
       description:
-        "外部联合持股、独立注册成立、或正在筹备上线。RJZ 持有股权，不掌握控制权。",
+        "外部联合持股，独立注册成立。RJZ 持有股权，不掌握控制权。",
     },
     cta: {
-      index: "03",
+      index: "02",
       label: "联系",
-      title: "你在做的事，伞下可能合适？",
-      description: "投资、咨询、运营合作的洽谈都欢迎。回复来自真人。",
+      title: "投资或合作洽谈？",
+      description: "股权、收购、治理相关的洽谈都欢迎。回复来自真人。",
       button: "联系我们",
     },
   },
@@ -371,20 +338,19 @@ export const zhDict: Dict = {
   about: {
     metaTitle: "关于",
     metaDescription:
-      "RJZ Holdings LLC 是一家于 2026 年在美国特拉华州注册成立的单一成员 LLC。",
+      "RJZ Holdings LLC 是一家在美国特拉华州注册成立的单一成员 LLC。一家单一持股的控股公司。",
     section: "00 / 关于",
     titleA: "RJZ Holdings 是",
-    titleB: "工作背后的结构。",
+    titleB: "一家单一持股的控股公司。",
     mandateLabel: "使命",
     mandateBody: [
-      "RJZ Holdings LLC 是一家于 2026 年在美国特拉华州注册成立的单一成员 LLC。它直接运营软件项目，同时持有与外部联合创办项目的股权。",
-      "RJZ 旗下的项目，有的独立注册法人，有的由 RJZ 直接运营。「公司组合」一栏列出 RJZ 持股的项目；「实验室」一栏列出当前正在构建的项目。",
+      "RJZ Holdings LLC 是一家于 2026 年在美国特拉华州注册成立的单一成员 LLC。它的职能是持有运营公司的股权。",
+      "RJZ Holdings 目前持有一个股权头寸：zZuP! Inc.，一家外部联合创办的消费级社交应用。「公司组合」一栏是这一头寸的公开记录。",
     ],
     founderLabel: "创始人",
     founderName: "Rujian Zhang",
     founderBio: [
-      "RJZ Holdings LLC 创始人 / 唯一成员。同时在三条线上运营与开发——消费级社交软件、研究工具、法律科技——并以这家控股公司作为把三者绑在一起的法律和组织结构。",
-      "当前直接介入运营的项目：zZuP!（联合创始人 & CSO）、LogicLink（独立开发者）、HNDSL 案件管理系统（独立开发者，为海南德赛利律所打造）。技术栈以 TypeScript / React / Next.js / Supabase / Python 为主。",
+      "RJZ Holdings LLC 创始人 / 唯一成员。zZuP! Inc. 联合创始人——后者正是 RJZ Holdings 当前持股的项目。",
       "据点位于美国马萨诸塞州 Medfield。",
     ],
     founderPortraitCaption: "800×1000 人像",
@@ -402,8 +368,8 @@ export const zhDict: Dict = {
     },
     structureLabel: "结构",
     structureBody: [
-      "部分项目独立注册法人、由外部联合持有；部分项目直接在 RJZ 旗下运营。每一个项目都有自己的路线图。",
-      "RJZ 在所有项目之间提供共享的资本、基础设施和品牌。",
+      "RJZ Holdings 不承担日常运营，也不直接交付产品。它的职能是法律和财务层面的：持有头寸、签署协议、留存记录。",
+      "组合刻意保持小而集中。新增持股很少发生，并且只在创始人直接介入底层项目时才会发生。",
     ],
   },
 
@@ -417,21 +383,6 @@ export const zhDict: Dict = {
       "每一个项目都有完整的案例。状态反映当前情况，不代表长期承诺。",
     readCaseStudy: "查看案例",
     comingSoon: "即将上线",
-  },
-
-  lab: {
-    metaTitle: "实验室",
-    metaDescription: "RJZ 旗下正在开发的想法和产品。",
-    index: "02",
-    label: "实验室",
-    title: "正在开发的想法和产品。",
-    description:
-      "在 RJZ 旗下构建或处于原型阶段的项目。有的有立场，有的是工具，有的不会上线。\n\n状态反映当前进度，不是承诺。",
-    statusLabel: "状态",
-    yearLabel: "年份",
-    thesisLabel: "立场",
-    descriptionLabel: "说明",
-    emptyMessage: "实验室暂无项目。",
   },
 
   ventureDetail: {
@@ -466,10 +417,10 @@ export const zhDict: Dict = {
   contact: {
     metaTitle: "联系",
     metaDescription: "联系 RJZ Holdings。",
-    section: "03 / 联系",
+    section: "02 / 联系",
     titleA: "回复你的是真人。",
     titleB: "没有表单，没有漏斗。",
-    description: "邮件最快。请在主题里写清是哪家项目或哪类事项，方便分发。",
+    description: "邮件最快。股权、收购、治理或媒体事项——请在主题里写清方向，方便分发。",
     channelsLabel: "联系方式",
     channels: {
       general: "通用",
