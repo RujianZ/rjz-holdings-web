@@ -38,6 +38,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <body className="min-h-screen flex flex-col">
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "globalThis.__name=globalThis.__name||((target)=>target);",
+          }}
+        />
         <ThemeProvider>
           <MotionRoot>
             <Nav />

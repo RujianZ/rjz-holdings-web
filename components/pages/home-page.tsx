@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
 import { ScanLine } from "@/components/scan-line";
-import { HeroBackground } from "@/components/hero-background";
+import { ThreeHeroFilament } from "@/components/three-hero-filament";
+import { HeroTitleTypewriter } from "@/components/hero-title-typewriter";
 import { Typewriter } from "@/components/typewriter";
 import { Stagger, StaggerItem, Reveal } from "@/components/reveal";
 import { VentureCard } from "@/components/venture-card";
@@ -46,12 +47,12 @@ function Hero({ dict }: { dict: Dict }) {
   return (
     <section
       id="index"
-      className="relative w-full overflow-hidden scroll-mt-20"
+      className="relative w-full overflow-hidden scroll-mt-20 bg-[#050506]"
     >
-      <HeroBackground src="/hero-bg.png" />
-      <div className="relative mx-auto w-full max-w-[1200px] px-6 md:px-10">
+      <ThreeHeroFilament />
+      <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 md:px-10">
         <ScanLine delay={0.15} duration={1.3} />
-        <div className="relative grid gap-16 md:grid-cols-12 md:gap-10 min-h-[60vh]">
+        <div className="relative grid min-h-[68vh] gap-16 md:grid-cols-12 md:gap-10">
         <Stagger
           mode="load"
           staggerDelay={0.09}
@@ -66,16 +67,11 @@ function Hero({ dict }: { dict: Dict }) {
 
           <div className="flex flex-col gap-6 max-w-3xl">
             <StaggerItem>
-              <h1 className="text-balance text-[2.25rem] md:text-5xl leading-[1.1] tracking-tight">
-                {dict.home.titleA}
-                {dict.home.titleB && (
-                  <>
-                    <br />
-                    <span className="text-muted-foreground">
-                      {dict.home.titleB}
-                    </span>
-                  </>
-                )}
+              <h1 className="text-balance text-[2.15rem] leading-[1.05] tracking-tight md:text-[4rem]">
+                <HeroTitleTypewriter
+                  titleA={dict.home.titleA}
+                  titleB={dict.home.titleB}
+                />
               </h1>
             </StaggerItem>
             <StaggerItem>
