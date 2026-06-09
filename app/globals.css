@@ -35,7 +35,7 @@
 /* Dark is default. Light mode is opt-in. */
 :root {
   /* Charcoal + off-white + cool-silver palette */
-  --background: #0f1115;
+  --background: #000000;
   --foreground: #f5f5f0;
   --muted: #1a1d22;
   --muted-foreground: #a8aeb8;
@@ -114,16 +114,6 @@
 
   body {
     background-color: var(--background);
-    background-image:
-      linear-gradient(rgba(200, 215, 230, 0.025) 1px, transparent 1px),
-      linear-gradient(
-        90deg,
-        rgba(200, 215, 230, 0.025) 1px,
-        transparent 1px
-      );
-    background-size: 80px 80px;
-    background-attachment: fixed;
-    background-position: -1px -1px;
     color: var(--foreground);
     font-weight: 400;
     font-feature-settings: "ss01", "cv11";
@@ -137,6 +127,9 @@
         rgba(40, 55, 75, 0.04) 1px,
         transparent 1px
       );
+    background-size: 80px 80px;
+    background-attachment: fixed;
+    background-position: -1px -1px;
   }
 
   h1, h2, h3, h4, h5, h6 {

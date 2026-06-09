@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/section-header";
 import { ScanLine } from "@/components/scan-line";
-import { ThreeHeroFilament } from "@/components/three-hero-filament";
+import { ThreeHeroFireTree } from "@/components/three-hero-firetree";
 import { HeroTitleTypewriter } from "@/components/hero-title-typewriter";
 import { Typewriter } from "@/components/typewriter";
 import { Stagger, StaggerItem, Reveal } from "@/components/reveal";
@@ -47,9 +47,9 @@ function Hero({ dict }: { dict: Dict }) {
   return (
     <section
       id="index"
-      className="relative w-full overflow-hidden scroll-mt-20 bg-[#050506]"
+      className="relative w-full overflow-hidden scroll-mt-20 bg-black"
     >
-      <ThreeHeroFilament />
+      <ThreeHeroFireTree zoom={1.3} />
       <div className="relative z-10 mx-auto w-full max-w-[1200px] px-6 md:px-10">
         <ScanLine delay={0.15} duration={1.3} />
         <div className="relative grid min-h-[68vh] gap-16 md:grid-cols-12 md:gap-10">

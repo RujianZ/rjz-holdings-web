@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { MotionRoot } from "@/components/motion-config";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { FireIntro } from "@/components/fire-intro";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -45,6 +46,7 @@ export default function RootLayout({
           }}
         />
         <ThemeProvider>
+          <FireIntro />
           <MotionRoot>
             <Nav />
             <main className="flex-1">{children}</main>
