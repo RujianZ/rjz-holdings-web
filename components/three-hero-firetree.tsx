@@ -17,6 +17,19 @@ export const FIRE_MORPH = 2.2; // morph duration
 const HOLD = FIRE_HOLD;
 const MORPH = FIRE_MORPH;
 
+// Whether the fullscreen entrance is currently playing. Set true by <FireIntro>
+// on a full page load (which re-evaluates this module, so it starts false), and
+// cleared when the intro bursts. A morphing hero only plays the fireball→tree
+// intro while this is true — on client-side navigations the module stays alive
+// with this false, so the hero starts already burning as the tree.
+let entranceActive = false;
+export function beginFireEntrance() {
+  entranceActive = true;
+}
+export function endFireEntrance() {
+  entranceActive = false;
+}
+
 const SIMPLEX = /* glsl */ `
   vec3 mod289(vec3 x){return x-floor(x*(1.0/289.0))*289.0;}
   vec4 mod289(vec4 x){return x-floor(x*(1.0/289.0))*289.0;}
@@ -73,6 +86,9 @@ export function ThreeHeroFireTree({
     const isMobile = Math.min(window.innerWidth, window.innerHeight) < 768;
     const PCOUNT = isMobile ? 14000 : 36000;
     const enableMorph = morph;
+    // Only run the fireball→tree intro when arriving via a full load (entrance
+    // active). On client-side navigation the hero starts already at the tree.
+    const playIntro = enableMorph && entranceActive;
 
     let disposed = false;
     let cleanup = () => {};
@@ -372,7 +388,12 @@ export function ThreeHeroFireTree({
       });
       io.observe(renderer.domElement);
 
-      const start = performance.now();
+      // Intro instances start at t=0 (fireball → morph → tree). Otherwise begin
+      // past the morph so the tree is already formed and just keeps burning.
+      const start =
+        playIntro || !enableMorph
+          ? performance.now()
+          : performance.now() - (HOLD + MORPH + 1) * 1000;
 
       if (prefersReducedMotion) {
         // settled tree, single static frame

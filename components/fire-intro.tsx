@@ -1,7 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { ThreeHeroFireTree, FIRE_HOLD } from "@/components/three-hero-firetree";
+import { useEffect, useRef, useState } from "react";
+import {
+  ThreeHeroFireTree,
+  FIRE_HOLD,
+  beginFireEntrance,
+  endFireEntrance,
+} from "@/components/three-hero-firetree";
 
 // "explosion": the instant the homepage's hero fire begins morphing into the tree.
 // The fullscreen fireball bursts away here, revealing the page + the tree forming
@@ -13,14 +18,24 @@ export function FireIntro() {
   const [burst, setBurst] = useState(false);
   const [gone, setGone] = useState(false);
 
+  // Flag the entrance as active synchronously during the first render — before
+  // the homepage's hero fire mounts and reads it — so the hero knows to morph.
+  const marked = useRef(false);
+  if (!marked.current) {
+    marked.current = true;
+    beginFireEntrance();
+  }
+
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      endFireEntrance();
       setGone(true);
       return;
     }
     document.documentElement.style.overflow = "hidden"; // lock scroll during intro
     const t1 = window.setTimeout(() => setBurst(true), BURST_AT);
     const t2 = window.setTimeout(() => {
+      endFireEntrance();
       setGone(true);
       document.documentElement.style.overflow = "";
     }, BURST_AT + BURST * 1000);

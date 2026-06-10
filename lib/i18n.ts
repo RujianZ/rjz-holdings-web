@@ -151,8 +151,8 @@ export const enDict: Dict = {
 
   home: {
     eyebrow: "EST. 2026 · DELAWARE",
-    titleA: "Holds equity in operating ventures.",
-    titleB: "",
+    titleA: "Holds equity in",
+    titleB: "operating ventures.",
     description: "One venture: zZuP!",
     viewVentures: "View ventures",
     aboutLink: "About RJZ →",
